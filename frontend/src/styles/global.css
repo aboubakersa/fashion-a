@@ -1,0 +1,271 @@
+/* ==================================================
+   global.css — تصميم بأسلوب Nike
+   ================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap');
+
+:root {
+  --black:  #000000;
+  --white:  #ffffff;
+  --gray1:  #111111;
+  --gray2:  #222222;
+  --gray3:  #444444;
+  --gray4:  #888888;
+  --gray5:  #cccccc;
+  --light:  #f5f5f5;
+  --cyan:   #00d4ff;
+  --red:    #ff0000;
+  --radius: 4px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--white);
+  color: var(--black);
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ===== أزرار ===== */
+.btn {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-black {
+  background: var(--black);
+  color: var(--white);
+}
+.btn-black:hover {
+  background: var(--gray2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.btn-white {
+  background: var(--white);
+  color: var(--black);
+}
+.btn-white:hover {
+  background: var(--light);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--black);
+  border: 1.5px solid var(--black);
+}
+.btn-outline:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-outline-white {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid var(--white);
+}
+.btn-outline-white:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn-cyan {
+  background: var(--cyan);
+  color: var(--black);
+}
+.btn-cyan:hover {
+  background: #00b8d9;
+  transform: translateY(-2px);
+}
+
+/* ===== حقول الإدخال ===== */
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #ddd;
+  border-radius: var(--radius);
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  background: var(--white);
+  transition: border 0.2s;
+  outline: none;
+  color: var(--black);
+}
+.input:focus { border-color: var(--black); }
+
+.input-dark {
+  background: #111;
+  border: 1.5px solid #222;
+  color: var(--white);
+}
+.input-dark::placeholder { color: #555; }
+.input-dark:focus { border-color: var(--cyan); }
+
+/* ===== رسائل ===== */
+.msg-error   { color: var(--red);  font-size: 13px; margin-top: 6px; font-weight: 600; letter-spacing: 0.5px; }
+.msg-success { color: #00a651;     font-size: 13px; margin-top: 6px; font-weight: 600; letter-spacing: 0.5px; }
+
+/* ===== تحميل ===== */
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #222;
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 40px auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.page-center {
+  display: flex; justify-content: center;
+  align-items: center; min-height: 80vh;
+  background: #000;
+}
+
+/* ===== انيميشن دخول ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up   { animation: fadeUp 0.7s 0.0s ease both; }
+.fade-up-2 { animation: fadeUp 0.7s 0.15s ease both; }
+.fade-up-3 { animation: fadeUp 0.7s 0.3s  ease both; }
+.fade-up-4 { animation: fadeUp 0.7s 0.45s ease both; }
+.fade-up-5 { animation: fadeUp 0.7s 0.6s  ease both; }
+
+/* ===== Marquee ===== */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track { overflow: hidden; }
+.marquee-inner {
+  display: flex;
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+.marquee-inner:hover { animation-play-state: paused; }
+
+/* ===== بطاقات ===== */
+.card-dark {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 16px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.card-dark:hover {
+  border-color: #333;
+  background: #111;
+}
+
+/* ===== شارة ===== */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.badge-cyan  { background: rgba(0,212,255,0.15); color: var(--cyan); }
+.badge-white { background: rgba(255,255,255,0.1); color: var(--white); }
+.badge-red   { background: rgba(255,0,0,0.15);   color: var(--red); }
+.badge-green { background: rgba(0,166,81,0.15);  color: #00a651; }
+
+/* ===== قسم العنوان ===== */
+.section-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-tag::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--cyan);
+}
+
+.section-title-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: 3px;
+  line-height: 0.9;
+}
+
+/* ===== divider ===== */
+.divider {
+  width: 100%; height: 1px;
+  background: #1a1a1a;
+  margin: 20px 0;
+}
+
+/* ===== الجدول ===== */
+.table-dark {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-dark th {
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555;
+  border-bottom: 1px solid #1a1a1a;
+  text-align: right;
+}
+.table-dark td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #aaa;
+  border-bottom: 1px solid #111;
+}
+.table-dark tr:hover td { background: #0a0a0a; color: #fff; }
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* ===== تحديد النص ===== */
+::selection { background: var(--cyan); color: #000; }
+
+/* ===== Glowing effect ===== */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0,212,255,0.3);
+}
+.text-cyan { color: var(--cyan); }
+.text-white { color: var(--white); }
+.text-gray  { color: var(--gray4); }
+
+/* ===== Grid helpers ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .section-title-big { font-size: 40px; }
+}
