@@ -9,14 +9,24 @@ from django.conf import settings
 def _generate_image(prompt):
     try:
         res = requests.post(
-            "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
-            headers={"Authorization": f"Bearer {settings.HF_API_KEY}"},
-            json={"inputs": prompt},
+            "https://api.together.xyz/v1/images/generations",
+            headers={
+                "Authorization": "Bearer key_CbyLdDwHzJJaDT4Ajw4qX",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": "black-forest-labs/FLUX.1-schnell-Free",
+                "prompt": prompt,
+                "width": 512,
+                "height": 512,
+                "steps": 4,
+                "n": 1,
+            },
             timeout=60,
         )
         if res.status_code == 200:
-            b64 = base64.b64encode(res.content).decode('utf-8')
-            return f"data:image/png;base64,{b64}"
+            data = res.json()
+            return data['data'][0]['url']
         return None
     except Exception:
         return None
@@ -35,9 +45,8 @@ class ChatDesignView(APIView):
         if image_url:
             return Response({'image_url': image_url, 'message': 'تم التوليد ✅'})
         else:
-            # صورة placeholder إذا فشل الاتصال
             return Response({
-                'image_url': f'https://picsum.photos/seed/{hash(prompt) % 1000}/400/500',
+                'image_url': f'https://picsum.photos/seed/{abs(hash(prompt)) % 1000}/400/500',
                 'message': 'تم التوليد (وضع تجريبي)'
             })
 
@@ -54,7 +63,7 @@ class GenerateDesignView(APIView):
         if image_url:
             return Response({'image_url': image_url})
         return Response({
-            'image_url': f'https://picsum.photos/seed/{hash(prompt) % 1000}/400/500'
+            'image_url': f'https://picsum.photos/seed/{abs(hash(prompt)) % 1000}/400/500'
         })
 
 
@@ -72,7 +81,6 @@ class GenerateVariationsView(APIView):
             if image_url:
                 images.append(image_url)
             else:
-                images.append(f'https://picsum.photos/seed/{(hash(prompt) + i) % 1000}/400/500')
+                images.append(f'https://picsum.photos/seed/{(abs(hash(prompt)) + i) % 1000}/400/500')
 
         return Response({'images': images, 'message': f'{len(images)} تنويعات ✅'})
-        

@@ -8,6 +8,7 @@ from pathlib import Path
 from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+REPLICATE_API_KEY = "r8_ac5YUm3P0TJEObhmY4NcPEbR3o1S3X00vyEw1"
 
 NVIDIA_API_KEY   = "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"
 NVIDIA_BASE_URL  = "https://integrate.api.nvidia.com/v1"
@@ -114,3 +115,5 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 WSGI_APPLICATION = 'config.wsgi.application'
+
+POLLINATIONS_ENABLED = True
